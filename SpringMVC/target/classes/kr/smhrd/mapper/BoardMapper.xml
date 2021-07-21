@@ -3,9 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.smhrd.mapper.BoardMapper">
-    <select id="boardList">
+    <select id="boardList" resultType="kr.smhrd.domain.BoardVO">
         select * from tbl_board
     </select>
+     <insert id="boardInsert" parameterType="kr.smhrd.domain.BoardVO">
+        insert into tbl_board(title,contents,writer) 
+        values(#{title},#{contents},#{writer})
+    </insert>
     
     
 </mapper>

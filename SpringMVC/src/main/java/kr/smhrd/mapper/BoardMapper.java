@@ -2,11 +2,13 @@ package kr.smhrd.mapper;
 
 import java.util.List;
 
-import kr.smhrd.domain.BoardVO;
+import org.apache.ibatis.annotations.Mapper;
 
+import kr.smhrd.domain.BoardVO;
+@Mapper
 public interface BoardMapper {
-	// SQL --> X --> Mapper XML 파일에 sql문 작성함
-	public List<BoardVO> boardList(); 
-		
-	}
+   //SQL -- X --> SQL Mapper XML File(XML)
+   public List<BoardVO> boardList(); 
+   public void boardInsert(BoardVO vo);  // insert
+}
 
