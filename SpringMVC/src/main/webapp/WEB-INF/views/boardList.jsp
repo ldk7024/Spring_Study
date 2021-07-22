@@ -34,7 +34,7 @@
        <c:forEach var="vo" items="${list}">
          <tr>
            <td>${vo.idx}</td>
-           <td>${vo.title}</td>
+           <td><a href ="${cpath}/boardContent.do?idx=${vo.idx}">${vo.title}</a></td>
            <td>${vo.count}</td>
            <td>${vo.writer}</td>
            <td>${vo.indate}</td>

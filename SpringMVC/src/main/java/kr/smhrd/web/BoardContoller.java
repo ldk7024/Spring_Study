@@ -35,8 +35,19 @@ public class BoardContoller { //new BoardController(); => Spring Container9DI
 	    return "boardForm"; //boardForm.jsp
    } 
    @RequestMapping("/boardInsert.do")
-   public String boardInsert(BoardVO vo) {
+   public String boardInsert(BoardVO vo) {  // 파라메터수집(자동) -> new BoardVO();
 	   boardMapper.boardInsert(vo);
+	   return "redirect:/boardList.do";
+   }
+   @RequestMapping("/boardContent.do")
+   public String boardContent(int idx, Model model) { 
+	   BoardVO vo = boardMapper.boardContent(idx);
+	   model.addAttribute("vo",vo);
+	   return "boardContent";
+   }
+   @RequestMapping("/boardDelete.do")
+   public String boardDelete(int idx) { 
+	  boardMapper.boardDelete(idx);
 	   return "redirect:/boardList.do";
    }
    

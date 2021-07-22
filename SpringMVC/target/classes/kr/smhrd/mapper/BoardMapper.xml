@@ -10,6 +10,9 @@
         insert into tbl_board(title,contents,writer) 
         values(#{title},#{contents},#{writer})
     </insert>
+    <delete id="boardDelete" parameterType="int">
+        delete from tbl_board where idx=#{idx}
+    </delete>
     
     
 </mapper>
