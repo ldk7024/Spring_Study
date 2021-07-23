@@ -15,6 +15,10 @@
   function goDel(idx) {
 	location.href = "${cpath}/boardDelete.do?idx="+idx;
 }
+  function goList() {
+	  location.href ="${cpath}/boardList.do"
+	
+}
   </script>
 </head>
 <body>
@@ -38,10 +42,10 @@
                   <label>작성자: </label> 
                   <input type="text" class="form-control" id="writer" name="writer" value ="${vo.writer}" readonly="readonly">
                </div>               
-               <input type="submit" value="수정" class="btn btn-primary btn-sm" >                  
+               <input type="submit" value="수정" class="btn btn-primary btn-sm">                  
                <input type='reset' value='취소' class='btn btn-warning btn-sm'>
                <input type='button' value='삭제' class='btn btn-info btn-sm' onclick = "goDel(${vo.idx})">  
-               <input type='button' value='목록' class='btn btn-success btn-sm'>             
+               <input type='button' value='목록' class='btn btn-success btn-sm' onclick = "goList()">             
             </form>    
     </div>
     <div class="panel-footer">빅데이터분석 4차(리대교)</div>

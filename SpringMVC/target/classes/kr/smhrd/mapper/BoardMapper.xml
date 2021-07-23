@@ -3,16 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.smhrd.mapper.BoardMapper">
-    <select id="boardList" resultType="kr.smhrd.domain.BoardVO">
+    <select id="boardList" resultType="boardVO">
         select * from tbl_board
     </select>
-     <insert id="boardInsert" parameterType="kr.smhrd.domain.BoardVO">
+     <insert id="boardInsert" parameterType="boardVO">
         insert into tbl_board(title,contents,writer) 
         values(#{title},#{contents},#{writer})
     </insert>
     <delete id="boardDelete" parameterType="int">
         delete from tbl_board where idx=#{idx}
     </delete>
-    
+	<update id="boardUpdate" >        
+        update tbl_board set title = #{title},contents = #{contents} where idx = #{idx}
+    </update>
+     <delete id="boardDeleteAjax" parameterType="int">
+        delete from tbl_board where idx=#{idx}
+    </delete>
     
 </mapper>

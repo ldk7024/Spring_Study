@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.smhrd.domain.BoardVO;
 import kr.smhrd.mapper.BoardMapper;
@@ -30,9 +31,14 @@ public class BoardContoller { //new BoardController(); => Spring Container9DI
       model.addAttribute("list", list); // 객체바인딩 ->ModelAndView->Model(*)
       return "boardList"; //  -->ViewResolver-->/WEB-INF/views/boardList.jsp
    }
+   @RequestMapping("/boardListAjax.do") //핸들러 매핑 @
+   public @ResponseBody List<BoardVO> boardListAjax() {
+      List<BoardVO> list = boardMapper.boardList(); // 게시판 전체리스트 가져오기
+      return list; // 객체를 리턴---{JSON API}-->String 변환 -->응답
+   }
    @RequestMapping("/boardForm.do")
-   public String boardForm() {
-	    return "boardForm"; //boardForm.jsp
+   public void boardForm() {
+	    //boardForm.jsp
    } 
    @RequestMapping("/boardInsert.do")
    public String boardInsert(BoardVO vo) {  // 파라메터수집(자동) -> new BoardVO();
@@ -49,6 +55,17 @@ public class BoardContoller { //new BoardController(); => Spring Container9DI
    public String boardDelete(int idx) { 
 	  boardMapper.boardDelete(idx);
 	   return "redirect:/boardList.do";
+   }
+   @RequestMapping("/boardUpdate.do")
+   public String boardUpdate(BoardVO vo) { 
+	  boardMapper.boardUpdate(vo);
+	   return "redirect:/boardList.do";
+   }
+   @RequestMapping("/boardDeleteAjax.do")
+   public @ResponseBody int boardDeleteAjax(int idx) { 
+	  int cnt = boardMapper.boardDeleteAjax(idx);
+	  return cnt;  // ajax --> 응답
+	 
    }
    
 }

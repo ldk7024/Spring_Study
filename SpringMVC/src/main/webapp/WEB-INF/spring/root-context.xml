@@ -21,7 +21,8 @@
         
    
    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
-       <property name="dataSource" ref="dataSource"/>       
+       <property name="dataSource" ref="dataSource"/> 
+       <property name="configLocation" value="/WEB-INF/mybatis/config.xml"/>      
    </bean>
    
    <!-- mapper interface를 Spring Container에 로딩하고, Mapper.XML과 내부적으로 연결시키는 동작(Scan)  중요해 이부분!!!!!-->
