@@ -17,8 +17,11 @@ public interface BoardMapper {
    
    @Select("select * from tbl_board where idx = #{idx}")
    public BoardVO boardContent(int idx); // select SQL~
+   
    public void boardDelete(int idx);
+   
    public void boardUpdate(BoardVO vo);
+   
    public int boardDeleteAjax(int idx);
 }
 

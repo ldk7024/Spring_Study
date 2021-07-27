@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,7 +27,7 @@ public class BoardContoller { //new BoardController(); => Spring Container9DI
    //@Resource("boardMapper")
    private BoardMapper boardMapper;
    //게시판 리스트를 가져오는 동작
-   @RequestMapping("/boardList.do") //핸들러 매핑 @
+   @GetMapping("/boardList.do") //핸들러 매핑 @
    public String boardList(Model model) {
       List<BoardVO> list = boardMapper.boardList(); //sessionFactory가 처리
       model.addAttribute("list", list); // 객체바인딩 ->ModelAndView->Model(*)
@@ -40,7 +42,7 @@ public class BoardContoller { //new BoardController(); => Spring Container9DI
    public void boardForm() {
 	    //boardForm.jsp
    } 
-   @RequestMapping("/boardInsert.do")
+   @PostMapping("/boardInsert.do")
    public String boardInsert(BoardVO vo) {  // 파라메터수집(자동) -> new BoardVO();
 	   boardMapper.boardInsert(vo);
 	   return "redirect:/boardList.do";

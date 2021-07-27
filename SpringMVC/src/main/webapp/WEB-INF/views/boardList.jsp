@@ -24,19 +24,21 @@
 		  error: function() { alert("error");}
 	  });
 	}   
-  function goDel(idx) {
-	  if(confirm("정말로 삭제 하시겠습니까?")==true){
-	  $.ajax({
-		  url: "${cpath}//boardDeleteAjax.do",
-		  type: "get",
-		  data : {"idx" : idx},
-		  success: goJson, // callback 함수
-		  error: function() { alert("error");}
-	  });
+  function goDel(index) {
+  var idx = $("#idx"+index).text();
+  if(confirm("정말로 삭제 하시겠습니까?")==true){
+		$.ajax({
+			url : "${cpath}/boardDeleteAjax.do",
+			type : "get",
+			data : {"idx" : idx},
+			success : goJson,
+			error : function(){ alert("error"); }
+		
+		});
 	}else{
 		return false;
-		} 
 	}
+  }
   //                   0, 1, 2 .....................index
   function resultHtml(data) { // data안에 json형식으로 {(),(),(),()} 데이터 리스트가 있음
 	// alert(data); 동적으로 게시판을 만들어줘야함
@@ -52,12 +54,12 @@
 	// 반복문 ($.each)
 	$.each(data, (index,obj)=>{
 		html+="<tr>";
-		html+="<td>"+obj.idx+"</td>";
+		html+="<td id='idx"+index+"'>"+obj.idx+"</td>";
 		html+="<td>"+obj.title+"</td>";
 		html+="<td>"+obj.count+"</td>";
 		html+="<td>"+obj.writer+"</td>";
 		html+="<td>"+obj.indate+"</td>";
-		html+="<td><button class = 'btn btn-warning btn-sm' onclick ='goDel("+obj.idx+")'>삭제(Ajax)</button></td>";
+		html+="<td><button class = 'btn btn-warning btn-sm' onclick ='goDel("+index+")'>삭제(Ajax)</button></td>";
 		html+="</tr>";
 	});
 	
