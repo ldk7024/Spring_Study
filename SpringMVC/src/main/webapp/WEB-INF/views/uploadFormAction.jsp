@@ -8,10 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <title>굿</title>
+<script type="text/javascript">
+	function goDown(uploadPath,uuid,fileName) {
+		var fileCallPath = uploadPath+"\\"+uuid+"_"+fileName;
+		location.href = '${cpath}/download.do?fileName='+encodeURIComponent(fileCallPath);
+/* 		alert(encodeURIComponent(fileCallPath)); */
+	}
+</script>
 </head>
 <body>
 	<c:forEach var="vo" items="${list}">
-	<li><a href="${cpath}/download.do?uploadPath=${fn:replace(vo.uploadPath,'\\','-')}&uuid=${vo.uuid}&fileName=${vo.fileName}">${vo.fileName }</a></li>
+	<li><a href="javascript:goDown('${vo.uploadPath}','${vo.uuid}','${vo.fileName}')">${vo.fileName}</a></li>
 	</c:forEach>
 </body>
 </html>
